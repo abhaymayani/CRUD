@@ -10,6 +10,22 @@
     die("Sorry We Fail To connect the database : ".mysqli_connect_error());
   }
 
+  // echo $_SERVER['REQUEST_METHOD'];
+  if($_SERVER['REQUEST_METHOD'] == 'POST'){
+      $title = $_POST["title"];
+      $description = $_POST["description"];
+
+      $sql = "INSERT INTO `notes` (`title`,`description`) values ('$title','$description')";
+      $result = mysqli_query($conn,$sql);
+
+      if($result){
+        // echo "The record has been inserted successfully..!";
+      }else{
+        echo "The record was not inserted successfully because of this error ". mysqli_error();
+      }
+
+  }
+
 ?>
 
 <!doctype html>
@@ -72,28 +88,25 @@
     </div>
   </nav>
 
-  <canter>
-
-
-  </canter>
-
 
   <div class="container my-3">
 
     <h3>Add Note TO iNotes</h3>
-    <div class="mb-3">
-      <label for="title" class="form-label">Note Title</label>
-      <input type="text" class="form-control" id="title" name="title" placeholder="Title">
-    </div>
-    <div class="mb-3">
-      <label for="desc" class="form-label">Note Description</label>
-      <textarea class="form-control" id="desc" name="desc" rows="3"></textarea>
-    </div>
-    <div class="mb-4">
+    <form action="nav.php/" method="post">
+      <div class="mb-3">
+        <label for="title" class="form-label">Note Title</label>
+        <input type="text" class="form-control" id="title" name="title" placeholder="Title">
+      </div>
+      <div class="mb-3">
+        <label for="description" class="form-label">Note Description</label>
+        <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+      </div>
+      <div class="mb-4">
 
-      <button type="submit" class="btn btn-primary" id="btn_submit">Add Note</button>
+        <button type="submit" class="btn btn-primary" id="btn_submit">Add Note</button>
 
-    </div>
+      </div>
+    </form> 
 
   </div>
 
