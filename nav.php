@@ -3,7 +3,11 @@
   $insert = false;
   $update = false;
   $delete = false;
-  $conn = mysqli_connect("localhost","root","","notes");
+  $host = "localhost";
+$username = "root";
+$password = "";
+$db = "notes";
+  $conn = mysqli_connect($host,$username,$password,$db);
 
   if($conn){
     // echo "connected<br>";
